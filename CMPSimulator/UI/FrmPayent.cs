@@ -994,5 +994,15 @@ namespace CMPSimulator.UI
             string src = HttpUtility.UrlDecode(strBeforeDecode);
             this.txtResultShow.Text = this.txtResultShow.Text + "\r\n【URL解码后：】" + "\r\n" + src;
         }
+
+        private void btnSaveToTxt_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            if (this.txtResultShow.Text.Length == 0)
+            {
+                MessageBox.Show("没有任何内容，就不保存了。。。");
+                return;
+            } 
+        }
     }
 }

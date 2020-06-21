@@ -131,6 +131,7 @@
             this.btnUnbase64AndUnzip = new System.Windows.Forms.Button();
             this.btnUrlEncode = new System.Windows.Forms.Button();
             this.btnUrlDecode = new System.Windows.Forms.Button();
+            this.btnSaveToTxt = new System.Windows.Forms.Button();
             this.gboxPayent.SuspendLayout();
             this.gboxBatchSumFlag.SuspendLayout();
             this.gboxOnlBatF.SuspendLayout();
@@ -1132,7 +1133,7 @@
             // 
             // btnBase64Decode
             // 
-            this.btnBase64Decode.Location = new System.Drawing.Point(569, 283);
+            this.btnBase64Decode.Location = new System.Drawing.Point(656, 283);
             this.btnBase64Decode.Name = "btnBase64Decode";
             this.btnBase64Decode.Size = new System.Drawing.Size(75, 23);
             this.btnBase64Decode.TabIndex = 12;
@@ -1142,7 +1143,7 @@
             // 
             // btnZipAndBase64
             // 
-            this.btnZipAndBase64.Location = new System.Drawing.Point(650, 283);
+            this.btnZipAndBase64.Location = new System.Drawing.Point(737, 283);
             this.btnZipAndBase64.Name = "btnZipAndBase64";
             this.btnZipAndBase64.Size = new System.Drawing.Size(115, 23);
             this.btnZipAndBase64.TabIndex = 13;
@@ -1152,7 +1153,7 @@
             // 
             // btnUnbase64AndUnzip
             // 
-            this.btnUnbase64AndUnzip.Location = new System.Drawing.Point(771, 283);
+            this.btnUnbase64AndUnzip.Location = new System.Drawing.Point(858, 283);
             this.btnUnbase64AndUnzip.Name = "btnUnbase64AndUnzip";
             this.btnUnbase64AndUnzip.Size = new System.Drawing.Size(119, 23);
             this.btnUnbase64AndUnzip.TabIndex = 14;
@@ -1162,7 +1163,7 @@
             // 
             // btnUrlEncode
             // 
-            this.btnUrlEncode.Location = new System.Drawing.Point(896, 283);
+            this.btnUrlEncode.Location = new System.Drawing.Point(983, 283);
             this.btnUrlEncode.Name = "btnUrlEncode";
             this.btnUrlEncode.Size = new System.Drawing.Size(75, 23);
             this.btnUrlEncode.TabIndex = 15;
@@ -1172,7 +1173,7 @@
             // 
             // btnUrlDecode
             // 
-            this.btnUrlDecode.Location = new System.Drawing.Point(977, 283);
+            this.btnUrlDecode.Location = new System.Drawing.Point(1064, 283);
             this.btnUrlDecode.Name = "btnUrlDecode";
             this.btnUrlDecode.Size = new System.Drawing.Size(75, 23);
             this.btnUrlDecode.TabIndex = 16;
@@ -1180,11 +1181,22 @@
             this.btnUrlDecode.UseVisualStyleBackColor = true;
             this.btnUrlDecode.Click += new System.EventHandler(this.btnUrlDecode_Click);
             // 
+            // btnSaveToTxt
+            // 
+            this.btnSaveToTxt.Location = new System.Drawing.Point(569, 283);
+            this.btnSaveToTxt.Name = "btnSaveToTxt";
+            this.btnSaveToTxt.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveToTxt.TabIndex = 17;
+            this.btnSaveToTxt.Text = "保存为文本";
+            this.btnSaveToTxt.UseVisualStyleBackColor = true;
+            this.btnSaveToTxt.Click += new System.EventHandler(this.btnSaveToTxt_Click);
+            // 
             // FrmPayent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1545, 753);
+            this.Controls.Add(this.btnSaveToTxt);
             this.Controls.Add(this.btnUrlDecode);
             this.Controls.Add(this.btnUrlEncode);
             this.Controls.Add(this.btnUnbase64AndUnzip);
@@ -1338,5 +1350,6 @@
         private System.Windows.Forms.Button btnUnbase64AndUnzip;
         private System.Windows.Forms.Button btnUrlEncode;
         private System.Windows.Forms.Button btnUrlDecode;
+        private System.Windows.Forms.Button btnSaveToTxt;
     }
 }
