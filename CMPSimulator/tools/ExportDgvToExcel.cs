@@ -23,7 +23,7 @@ namespace CMPSimulater.tools
             string filePath = "";
             SaveFileDialog s = new SaveFileDialog();
             s.Title = "保存Excel文件";
-            s.Filter = "Excel文件(*.xls)|*.xls|*.xlsx";
+            s.Filter = "Excel文件(*.xls)|*.xls";
             s.FilterIndex = 1;
             if (s.ShowDialog() == DialogResult.OK)
                 filePath = s.FileName;

@@ -126,6 +126,11 @@
             this.label18 = new System.Windows.Forms.Label();
             this.txtQueryCondition = new System.Windows.Forms.TextBox();
             this.btnExportToExcel = new System.Windows.Forms.Button();
+            this.btnBase64Decode = new System.Windows.Forms.Button();
+            this.btnZipAndBase64 = new System.Windows.Forms.Button();
+            this.btnUnbase64AndUnzip = new System.Windows.Forms.Button();
+            this.btnUrlEncode = new System.Windows.Forms.Button();
+            this.btnUrlDecode = new System.Windows.Forms.Button();
             this.gboxPayent.SuspendLayout();
             this.gboxBatchSumFlag.SuspendLayout();
             this.gboxOnlBatF.SuspendLayout();
@@ -1102,7 +1107,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(816, 282);
+            this.label18.Location = new System.Drawing.Point(1003, 239);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(65, 12);
             this.label18.TabIndex = 9;
@@ -1110,7 +1115,7 @@
             // 
             // txtQueryCondition
             // 
-            this.txtQueryCondition.Location = new System.Drawing.Point(881, 277);
+            this.txtQueryCondition.Location = new System.Drawing.Point(1068, 234);
             this.txtQueryCondition.Name = "txtQueryCondition";
             this.txtQueryCondition.Size = new System.Drawing.Size(146, 21);
             this.txtQueryCondition.TabIndex = 10;
@@ -1125,11 +1130,66 @@
             this.btnExportToExcel.UseVisualStyleBackColor = true;
             this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
             // 
+            // btnBase64Decode
+            // 
+            this.btnBase64Decode.Location = new System.Drawing.Point(569, 283);
+            this.btnBase64Decode.Name = "btnBase64Decode";
+            this.btnBase64Decode.Size = new System.Drawing.Size(75, 23);
+            this.btnBase64Decode.TabIndex = 12;
+            this.btnBase64Decode.Text = "Base64解码";
+            this.btnBase64Decode.UseVisualStyleBackColor = true;
+            this.btnBase64Decode.Click += new System.EventHandler(this.btnBase64Decode_Click);
+            // 
+            // btnZipAndBase64
+            // 
+            this.btnZipAndBase64.Location = new System.Drawing.Point(650, 283);
+            this.btnZipAndBase64.Name = "btnZipAndBase64";
+            this.btnZipAndBase64.Size = new System.Drawing.Size(115, 23);
+            this.btnZipAndBase64.TabIndex = 13;
+            this.btnZipAndBase64.Text = "压缩并base64编码";
+            this.btnZipAndBase64.UseVisualStyleBackColor = true;
+            this.btnZipAndBase64.Click += new System.EventHandler(this.btnZipAndBase64_Click);
+            // 
+            // btnUnbase64AndUnzip
+            // 
+            this.btnUnbase64AndUnzip.Location = new System.Drawing.Point(771, 283);
+            this.btnUnbase64AndUnzip.Name = "btnUnbase64AndUnzip";
+            this.btnUnbase64AndUnzip.Size = new System.Drawing.Size(119, 23);
+            this.btnUnbase64AndUnzip.TabIndex = 14;
+            this.btnUnbase64AndUnzip.Text = "base64解码再解压";
+            this.btnUnbase64AndUnzip.UseVisualStyleBackColor = true;
+            this.btnUnbase64AndUnzip.Click += new System.EventHandler(this.btnUnbase64AndUnzip_Click);
+            // 
+            // btnUrlEncode
+            // 
+            this.btnUrlEncode.Location = new System.Drawing.Point(896, 283);
+            this.btnUrlEncode.Name = "btnUrlEncode";
+            this.btnUrlEncode.Size = new System.Drawing.Size(75, 23);
+            this.btnUrlEncode.TabIndex = 15;
+            this.btnUrlEncode.Text = "UrlEncode";
+            this.btnUrlEncode.UseVisualStyleBackColor = true;
+            this.btnUrlEncode.Click += new System.EventHandler(this.btnUrlEncode_Click);
+            // 
+            // btnUrlDecode
+            // 
+            this.btnUrlDecode.Location = new System.Drawing.Point(977, 283);
+            this.btnUrlDecode.Name = "btnUrlDecode";
+            this.btnUrlDecode.Size = new System.Drawing.Size(75, 23);
+            this.btnUrlDecode.TabIndex = 16;
+            this.btnUrlDecode.Text = "UrlDecode";
+            this.btnUrlDecode.UseVisualStyleBackColor = true;
+            this.btnUrlDecode.Click += new System.EventHandler(this.btnUrlDecode_Click);
+            // 
             // FrmPayent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1545, 753);
+            this.Controls.Add(this.btnUrlDecode);
+            this.Controls.Add(this.btnUrlEncode);
+            this.Controls.Add(this.btnUnbase64AndUnzip);
+            this.Controls.Add(this.btnZipAndBase64);
+            this.Controls.Add(this.btnBase64Decode);
             this.Controls.Add(this.btnExportToExcel);
             this.Controls.Add(this.txtQueryCondition);
             this.Controls.Add(this.label18);
@@ -1273,5 +1333,10 @@
         private System.Windows.Forms.TextBox txtBankTypeCode;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btnExportToExcel;
+        private System.Windows.Forms.Button btnBase64Decode;
+        private System.Windows.Forms.Button btnZipAndBase64;
+        private System.Windows.Forms.Button btnUnbase64AndUnzip;
+        private System.Windows.Forms.Button btnUrlEncode;
+        private System.Windows.Forms.Button btnUrlDecode;
     }
 }

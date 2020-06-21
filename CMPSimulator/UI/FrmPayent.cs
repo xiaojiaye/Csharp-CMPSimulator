@@ -15,6 +15,7 @@ using CMPSimulator.Entity.QueryReturnEntity;
 using CMPSimulator.Entity.QueryReturnEntity.DIBPSBC;
 using CMPSimulator.Entity.QueryReturnEntity.QHISD;
 using CMPSimulater.tools;
+using System.Web;
 
 namespace CMPSimulator.UI
 {
@@ -826,10 +827,11 @@ namespace CMPSimulator.UI
                     break;
                     #endregion
 
-                    #region  case "DIBPSBC0.0.0.1":                    
+                #region  case "DIBPSBC0.0.0.1":                    
                     case "DIBPSBC0.0.0.1":
                     {
                         int iPackageCount = 0;
+                        DateTime dtStart = DateTime.Now;
                         DibpsbcOut objtemp = new DibpsbcOut();
                         DibpsbcOut objOut = new DibpsbcOut();
                         // 封装DIBPSBC对象
@@ -887,16 +889,20 @@ namespace CMPSimulator.UI
                                 objOut.listDibpsbcRd.AddRange(objtemp.listDibpsbcRd);
                             }
 
-                            xml.Save("d:\\test\\" + "【" + objDIBPSBC0001.fSeqno + "】" + "第" + (iPackageCount + 1).ToString() + "次DIBPSBC.xml");//保存
+                            // xml.Save("d:\\test\\" + "【" + objDIBPSBC0001.fSeqno + "】" + "第" + (iPackageCount + 1).ToString() + "次DIBPSBC.xml");//保存,文件量太大，故没保存
                             XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                             objDIBPSBC0001.NextTag = nodelist_pub.Item(0).InnerText;
                             iPackageCount++;
 
                         } while (objDIBPSBC0001.NextTag.Length != 0);
-
+                        DateTime dtEndtime1 = DateTime.Now;
                         this.txtResultShow.Text = this.txtResultShow.Text + "【总共发查询包的个数是：】\r\n" + iPackageCount.ToString() + "\r\n";
                         this.txtResultShow.Text = this.txtResultShow.Text + "【总共有行号记录：】" + objOut.listDibpsbcRd.Count.ToString() + "条" + "\r\n";
                         this.dgvShowQpdRd.DataSource = objOut.listDibpsbcRd;
+                        DateTime dtEndtime2 = DateTime.Now;
+                        this.txtResultShow.Text = this.txtResultShow.Text + "【开始时间：】" + dtStart.ToString("yyyyMMddHHmmssSSS")  + "\r\n";
+                        this.txtResultShow.Text = this.txtResultShow.Text + "【list对象ADD完毕后的时间：】" + dtEndtime1.ToString("yyyyMMddHHmmssSSS") + "\r\n";
+                        this.txtResultShow.Text = this.txtResultShow.Text + "【list<rd>显示在datagridview的时间：】" + dtEndtime2.ToString("yyyyMMddHHmmssSSS") + "\r\n";
                         tools.DataGridViewStyle.DgvStyle1(this.dgvShowQpdRd);
                     }
                     return;
@@ -937,6 +943,56 @@ namespace CMPSimulator.UI
         {
             ExportDvgToExcel objExpertToExcel = new ExportDvgToExcel();
             objExpertToExcel.OutputAsExcelFile(this.dgvShowQpdRd);
+        }
+
+        /// <summary>
+        /// Base64解码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBase64Decode_Click(object sender, EventArgs e)
+        {
+            string str_SrcBased64 = this.txtResultShow.Text;
+            byte[] b = Convert.FromBase64String(str_SrcBased64);
+            string t = Encoding.GetEncoding(936).GetString(b);
+            this.txtResultShow.Text = this.txtResultShow.Text + "\r\n【解码后：】\r\n" + t;
+        }
+
+        /// <summary>
+        /// 先压缩，再base64编码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnZipAndBase64_Click(object sender, EventArgs e)
+        {
+            string src = String.Empty;
+            src = this.txtResultShow.Text.Trim();
+            string afterZipAndBase64 = ZipAndBase64.Compress(src);
+            this.txtResultShow.Text = this.txtResultShow.Text + "\r\n" + "【Gzip后：】" + afterZipAndBase64;
+            afterZipAndBase64 = tools.Base64AndUnbase64.EncodeBase64("gb2312", afterZipAndBase64);
+            this.txtResultShow.Text = this.txtResultShow.Text + "\r\n" + "【zip并base64后：】" + afterZipAndBase64;
+        }
+
+        private void btnUnbase64AndUnzip_Click(object sender, EventArgs e)
+        {
+            string src = this.txtResultShow.Text.Trim();
+            string strUnbase64AndUnzip = tools.ZipHelper.GZipDecompressString(src);
+            this.txtResultShow.Text = this.txtResultShow.Text + "\r\n【Base64解码且解压之后的报文是：】" + strUnbase64AndUnzip;
+        }
+
+        private void btnUrlEncode_Click(object sender, EventArgs e)
+        {
+            string src = this.txtResultShow.Text.Trim();
+            // string srcUrlEncoded = HttpUtility.UrlEncode(src, System.Text.Encoding.GetEncoding("GB2312"));
+            string srcUrlEncoded = HttpUtility.UrlEncode(src);
+            this.txtResultShow.Text = this.txtResultShow.Text + "\r\n【URL编码后：】" + "\r\n" + srcUrlEncoded;
+        }
+
+        private void btnUrlDecode_Click(object sender, EventArgs e)
+        {
+            string strBeforeDecode = this.txtResultShow.Text.Trim();
+            string src = HttpUtility.UrlDecode(strBeforeDecode);
+            this.txtResultShow.Text = this.txtResultShow.Text + "\r\n【URL解码后：】" + "\r\n" + src;
         }
     }
 }
