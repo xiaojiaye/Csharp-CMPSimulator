@@ -18,6 +18,7 @@ using CMPSimulater.tools;
 
 namespace CMPSimulator.UI
 {
+
     public partial class FrmPayent : Form
     {
         #region 成员变量 及 构造方法
@@ -928,7 +929,7 @@ namespace CMPSimulator.UI
 
 
         /// <summary>
-        /// 将结果视图Datagridview导出为excel
+        /// 将结果视图Datagridview导出为excel ,20200621提交
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
