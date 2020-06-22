@@ -79,10 +79,10 @@
     <Compile Include="Common.cs" />
     <Compile Include="CreateXml\CreateXml.cs" />
     <Compile Include="Entity\ActionUrl.cs" />
-    <Compile Include="Entity\BankNoAndBankName.cs" />
-    <Compile Include="Entity\ObjectPayent.cs" />
-    <Compile Include="Entity\ObjectPayper0010.cs" />
-    <Compile Include="Entity\ObjectPaypercol0010.cs" />
+    <Compile Include="Entity\tradeTypeEntity\BankNoAndBankName.cs" />
+    <Compile Include="Entity\tradeTypeEntity\ObjectPayent.cs" />
+    <Compile Include="Entity\tradeTypeEntity\ObjectPayper0010.cs" />
+    <Compile Include="Entity\tradeTypeEntity\ObjectPaypercol0010.cs" />
     <Compile Include="Entity\PubHeader.cs" />
     <Compile Include="Entity\QueryReturnEntity\DIBPSBC\DibpsbcOut.cs" />
     <Compile Include="Entity\QueryReturnEntity\DIBPSBC\DibpsbcPub.cs" />

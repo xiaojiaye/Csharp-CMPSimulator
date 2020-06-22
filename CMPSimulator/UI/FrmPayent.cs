@@ -625,6 +625,18 @@ namespace CMPSimulator.UI
                             XmlDocument xml = new XmlDocument();
                             xml.LoadXml(tt);
 
+                            // 【如果 RetCode ！= 0 】 ，则不进行 指令包处理
+                            XmlNodeList nodelist_RetCode = xml.GetElementsByTagName("RetCode");
+                            string strRetCode = nodelist_RetCode.Item(0).InnerText;
+                            XmlNodeList nodelist_RetMsg = xml.GetElementsByTagName("RetMsg");
+                            string strRetMsg = nodelist_RetMsg.Item(0).InnerText;
+                            if (!("0".Equals(strRetCode)))
+                            {
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                return;
+                            }
+
                             // 【6】将xml字符串，序列化为对象
                             string strQpdReturnSrc = tt;
                             // QPD返回的原串的<pub>节点部分
@@ -708,6 +720,19 @@ namespace CMPSimulator.UI
                             XmlDocument xml = new XmlDocument();
                             xml.LoadXml(tt);
 
+                            // 【如果 RetCode ！= 0 】 ，则不进行 指令包处理
+                            XmlNodeList nodelist_RetCode = xml.GetElementsByTagName("RetCode");
+                            string strRetCode = nodelist_RetCode.Item(0).InnerText;
+                            XmlNodeList nodelist_RetMsg = xml.GetElementsByTagName("RetMsg");
+                            string strRetMsg = nodelist_RetMsg.Item(0).InnerText;
+                            if (!("0".Equals(strRetCode)))
+                            {
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                return;
+                            }
+
+
                             // 【6】将xml字符串，序列化为对象
                             string strQhisdReturnSrc = tt;
                             // QHISD返回的原串的<pub>节点部分
@@ -788,6 +813,23 @@ namespace CMPSimulator.UI
                             // 【5】解析xml返回报文中的nextTag字段
                             XmlDocument xml = new XmlDocument();
                             xml.LoadXml(tt);
+
+                            // 【如果 RetCode ！= 0 】 ，则不进行 指令包处理
+                            XmlNodeList nodelist_RetCode = xml.GetElementsByTagName("RetCode");
+                            string strRetCode = nodelist_RetCode.Item(0).InnerText;
+                            XmlNodeList nodelist_RetMsg = xml.GetElementsByTagName("RetMsg");
+                            string strRetMsg = nodelist_RetMsg.Item(0).InnerText;
+                            if (!("0".Equals(strRetCode)))
+                            {
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                return;
+                            }
+                         
+
+                        
+
+
                             xml.Save("d:\\test\\" + "【" + objQRYGJDTL0010.fSeqno + "】" + "第" + (iCountQRYGJDTL + 1).ToString() + "次QRYGJDTL.xml");//保存
                             XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                             objQRYGJDTL0010.NextTag = nodelist_pub.Item(0).InnerText;
@@ -853,6 +895,18 @@ namespace CMPSimulator.UI
                             // 【5】解析xml返回报文中的nextTag字段
                             XmlDocument xml = new XmlDocument();
                             xml.LoadXml(tt);
+
+                            // 【如果 RetCode ！= 0 】 ，则不进行 指令包处理
+                            XmlNodeList nodelist_RetCode = xml.GetElementsByTagName("RetCode");
+                            string strRetCode = nodelist_RetCode.Item(0).InnerText;
+                            XmlNodeList nodelist_RetMsg = xml.GetElementsByTagName("RetMsg");
+                            string strRetMsg = nodelist_RetMsg.Item(0).InnerText;
+                            if (!("0".Equals(strRetCode)))
+                            {
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
+                                this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                return;
+                            }
 
                             // 【6】将xml字符串，序列化为对象
                             string strDibpsbcReturnSrc = tt;
@@ -928,6 +982,12 @@ namespace CMPSimulator.UI
 
         }
 
+        #region 其他工具类函数
+        /// <summary>
+        /// 给DataGridView添加行号
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="e"></param>
         private void dgvShowQpdRd_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             tools.DataGridViewStyle.DgvRowPostPaint(this.dgvShowQpdRd, e);
@@ -1002,7 +1062,9 @@ namespace CMPSimulator.UI
             {
                 MessageBox.Show("没有任何内容，就不保存了。。。");
                 return;
-            } 
+            }
         }
+        #endregion
+
     }
 }
