@@ -1001,8 +1001,10 @@ namespace CMPSimulator.UI
         /// <param name="e"></param>
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
-            ExportDvgToExcel objExpertToExcel = new ExportDvgToExcel();
-            objExpertToExcel.OutputAsExcelFile(this.dgvShowQpdRd);
+            //ExportDvgToExcel objExpertToExcel = new ExportDvgToExcel();
+            //objExpertToExcel.OutputAsExcelFile(this.dgvShowQpdRd);
+
+            ExportDgvToExcelByNPOI.ExportExcel("", this.dgvShowQpdRd, "宋体", 11); //默认文件名,DataGridView控件的名称,字体,字号 
         }
 
         /// <summary>
