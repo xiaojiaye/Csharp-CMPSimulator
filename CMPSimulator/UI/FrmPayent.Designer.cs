@@ -1215,6 +1215,7 @@
             this.Controls.Add(this.btnPayentSubmit);
             this.Controls.Add(this.gboxPayent);
             this.Name = "FrmPayent";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmPayent";
             this.Load += new System.EventHandler(this.FrmPayent_Load);
             this.gboxPayent.ResumeLayout(false);

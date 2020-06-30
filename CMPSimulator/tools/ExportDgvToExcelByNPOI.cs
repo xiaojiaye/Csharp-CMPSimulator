@@ -225,7 +225,18 @@ namespace CMPSimulator.tools
                                 columnWidth = length + 10; //设置列宽数值
                             }
                         }
-                        sheet.SetColumnWidth(columnNum, columnWidth * 256);
+                        //sheet.SetColumnWidth(columnNum, columnWidth * 256);  这是原来的代码
+                        #region 修改的解决excel列宽 超过255 的bug ，这一段是新加的，上一句是原来的。
+                        //设置列宽
+                        if (columnWidth > 255)
+                        {
+                            columnWidth = 254;
+                        }
+                        else
+                        {
+                            sheet.SetColumnWidth(columnNum, columnWidth * 256);
+                        }
+                        #endregion
 
                         //单元格样式
                         dataRow.GetCell(columnNum).CellStyle = cellStyle;

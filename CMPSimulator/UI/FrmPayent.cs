@@ -16,6 +16,7 @@ using CMPSimulator.Entity.QueryReturnEntity.DIBPSBC;
 using CMPSimulator.Entity.QueryReturnEntity.QHISD;
 using CMPSimulater.tools;
 using System.Web;
+using System.IO;
 
 namespace CMPSimulator.UI
 {
@@ -75,6 +76,12 @@ namespace CMPSimulator.UI
             this.txtHttpPort.Text = strHttpPort;
             this.txtSignPort.Text = strSignPort;
             this.txtEnvironmentTime.Text = strTestEnvironmentDate;
+            // 判断D盘是否有test文件夹
+            string path = @"D:\test\";
+            if (Directory.Exists(path) == false)
+            {
+                Directory.CreateDirectory(path);
+            }
         }
         #endregion
 
