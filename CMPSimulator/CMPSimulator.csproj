@@ -117,6 +117,9 @@
     <Compile Include="Common.cs" />
     <Compile Include="CreateXml\CreateXml.cs" />
     <Compile Include="Entity\ActionUrl.cs" />
+    <Compile Include="Entity\QueryReturnEntity\QRYGJDTL\QrygjdtlOut.cs" />
+    <Compile Include="Entity\QueryReturnEntity\QRYGJDTL\QrygjdtlPub.cs" />
+    <Compile Include="Entity\QueryReturnEntity\QRYGJDTL\rd.cs" />
     <Compile Include="Entity\tradeTypeEntity\BankNoAndBankName.cs" />
     <Compile Include="Entity\tradeTypeEntity\ObjectPayent.cs" />
     <Compile Include="Entity\tradeTypeEntity\ObjectPayper0010.cs" />
