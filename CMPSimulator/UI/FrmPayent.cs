@@ -17,6 +17,7 @@ using CMPSimulator.Entity.QueryReturnEntity.QHISD;
 using CMPSimulater.tools;
 using System.Web;
 using System.IO;
+using CMPSimulator.Entity.QueryReturnEntity.QRYGJDTL;
 
 namespace CMPSimulator.UI
 {
@@ -800,7 +801,9 @@ namespace CMPSimulator.UI
                             return;
                         }
 
-                        int iCountQRYGJDTL = 0;   // 包的个数                    
+                        int iCountQRYGJDTL = 0;   // 包的个数    
+                        QrygjdtlOut objtemp = new QrygjdtlOut();
+                        QrygjdtlOut objOut = new QrygjdtlOut();
                         // 封装QHISD对象
                         objQRYGJDTL0010 = createObjectQRYGJDTL0010(strBeijingTime);
                         do
@@ -832,19 +835,53 @@ namespace CMPSimulator.UI
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
                                 return;
                             }
-                         
 
-                        
 
+                            // 【6】将xml字符串，序列化为对象
+                            string strQrygjdtlReturnSrc = tt;
+                            // QRYGJDTL返回的原串的<pub>节点部分
+                            string strQrygjdtlOfPubSrc = string.Empty;
+                            int posStartPub = strQrygjdtlReturnSrc.IndexOf(@"<pub>");
+                            int posEndPub = strQrygjdtlReturnSrc.LastIndexOf(@"</pub>");
+                            strQrygjdtlOfPubSrc = strQrygjdtlReturnSrc.Substring(posStartPub, posEndPub - posStartPub + 6);
+                            // 将 strQrygjdtlOfPubSrc 转换为pub 对象
+                            QrygjdtlPub objPub = XmlSerializeHelper.DESerializer<QrygjdtlPub>(strQrygjdtlOfPubSrc);
+
+
+                            // QRYGJDTL返回的<out>节点部分
+                            string strQrygjdtlOfOutSrc = string.Empty;
+                            int posStartOut = strQrygjdtlReturnSrc.IndexOf(@"<out>");
+                            int posEndOut = strQrygjdtlReturnSrc.LastIndexOf(@"</out>");
+                            strQrygjdtlOfOutSrc = strQrygjdtlReturnSrc.Substring(posStartOut, posEndOut - posStartOut + 6);
+
+                            // 得到<out>节点部分后，进一步处理，在<rd>前加<rds>，在</rd>加</rds>
+                            // ...此处还需要加业务逻辑，如果 posFirsIndexOfRdInOut < 0 ，则没有 rd 循环体返回
+                            int posFirsIndexOfRdInOut = strQrygjdtlOfOutSrc.IndexOf(@"<rd>");
+                            strQrygjdtlOfOutSrc = strQrygjdtlOfOutSrc.Insert(posFirsIndexOfRdInOut, @"<rds>");
+                            int posLastIndexOfRdInOut = strQrygjdtlOfOutSrc.LastIndexOf(@"</rd>");
+                            strQrygjdtlOfOutSrc = strQrygjdtlOfOutSrc.Insert(posLastIndexOfRdInOut + 5, @"</rds>");
+
+                            // 将xml out 部分 转换为 对象
+                            objtemp = XmlSerializeHelper.DESerializer<QrygjdtlOut>(strQrygjdtlOfOutSrc);
+                            if (iCountQRYGJDTL == 0)
+                            {
+                                objOut.listQrygjtlRd = objtemp.listQrygjtlRd;
+                            }
+                            else
+                            {
+                                objOut.listQrygjtlRd.AddRange(objtemp.listQrygjtlRd);
+                            }
 
                             xml.Save("d:\\test\\" + "【" + objQRYGJDTL0010.fSeqno + "】" + "第" + (iCountQRYGJDTL + 1).ToString() + "次QRYGJDTL.xml");//保存
                             XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                             objQRYGJDTL0010.NextTag = nodelist_pub.Item(0).InnerText;
-
                             iCountQRYGJDTL++;
 
                         } while (objQRYGJDTL0010.NextTag.Length != 0);
                         this.txtResultShow.Text = this.txtResultShow.Text + "【总共发查询包的个数是：】\r\n" + iCountQRYGJDTL.ToString() + "\r\n";
+                        this.txtResultShow.Text = this.txtResultShow.Text + "【总共有当日明细：】" + objOut.listQrygjtlRd.Count.ToString() + "条" + "\r\n";
+                        this.dgvShowQpdRd.DataSource = objOut.listQrygjtlRd;
+                        tools.DataGridViewStyle.DgvStyle1(this.dgvShowQpdRd);
                     }
                     return;
                     break;

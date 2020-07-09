@@ -23,7 +23,7 @@ namespace CMPSimulator.Entity.QueryReturnEntity.QRYGJDTL
         public string NextTag { get; set; }
         [XmlElementAttribute("AcctSeq")]
         public string AcctSeq { get; set; }
-
-
+        [XmlArrayAttribute("rds")]
+        public List<rd> listQrygjtlRd { get; set; }
     }
 }
