@@ -131,7 +131,9 @@
             this.btnUnbase64AndUnzip = new System.Windows.Forms.Button();
             this.btnUrlEncode = new System.Windows.Forms.Button();
             this.btnUrlDecode = new System.Windows.Forms.Button();
-            this.btnSaveToTxt = new System.Windows.Forms.Button();
+            this.btnXmlToClass = new System.Windows.Forms.Button();
+            this.btnTabaccoTestOnly = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.gboxPayent.SuspendLayout();
             this.gboxBatchSumFlag.SuspendLayout();
             this.gboxOnlBatF.SuspendLayout();
@@ -203,6 +205,7 @@
             this.txtBusType.Name = "txtBusType";
             this.txtBusType.Size = new System.Drawing.Size(60, 21);
             this.txtBusType.TabIndex = 42;
+            this.txtBusType.Text = "11";
             // 
             // label19
             // 
@@ -408,7 +411,7 @@
             this.txtUseCN.Name = "txtUseCN";
             this.txtUseCN.Size = new System.Drawing.Size(100, 21);
             this.txtUseCN.TabIndex = 26;
-            this.txtUseCN.Text = "用途UseCN";
+            this.txtUseCN.Text = "工资";
             // 
             // label5
             // 
@@ -778,7 +781,7 @@
             // 
             // btnPayentSubmit
             // 
-            this.btnPayentSubmit.Location = new System.Drawing.Point(292, 283);
+            this.btnPayentSubmit.Location = new System.Drawing.Point(244, 283);
             this.btnPayentSubmit.Name = "btnPayentSubmit";
             this.btnPayentSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnPayentSubmit.TabIndex = 1;
@@ -955,12 +958,13 @@
             // 
             // btnQuerySubmit
             // 
-            this.btnQuerySubmit.Location = new System.Drawing.Point(391, 283);
+            this.btnQuerySubmit.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnQuerySubmit.Location = new System.Drawing.Point(325, 283);
             this.btnQuerySubmit.Name = "btnQuerySubmit";
             this.btnQuerySubmit.Size = new System.Drawing.Size(75, 23);
             this.btnQuerySubmit.TabIndex = 4;
             this.btnQuerySubmit.Text = "查询提交";
-            this.btnQuerySubmit.UseVisualStyleBackColor = true;
+            this.btnQuerySubmit.UseVisualStyleBackColor = false;
             this.btnQuerySubmit.Click += new System.EventHandler(this.btnQuerySubmit_Click);
             // 
             // gboxBaseParameter
@@ -1123,7 +1127,7 @@
             // 
             // btnExportToExcel
             // 
-            this.btnExportToExcel.Location = new System.Drawing.Point(478, 283);
+            this.btnExportToExcel.Location = new System.Drawing.Point(411, 283);
             this.btnExportToExcel.Name = "btnExportToExcel";
             this.btnExportToExcel.Size = new System.Drawing.Size(85, 23);
             this.btnExportToExcel.TabIndex = 11;
@@ -1133,7 +1137,7 @@
             // 
             // btnBase64Decode
             // 
-            this.btnBase64Decode.Location = new System.Drawing.Point(656, 283);
+            this.btnBase64Decode.Location = new System.Drawing.Point(722, 283);
             this.btnBase64Decode.Name = "btnBase64Decode";
             this.btnBase64Decode.Size = new System.Drawing.Size(75, 23);
             this.btnBase64Decode.TabIndex = 12;
@@ -1143,7 +1147,7 @@
             // 
             // btnZipAndBase64
             // 
-            this.btnZipAndBase64.Location = new System.Drawing.Point(737, 283);
+            this.btnZipAndBase64.Location = new System.Drawing.Point(803, 283);
             this.btnZipAndBase64.Name = "btnZipAndBase64";
             this.btnZipAndBase64.Size = new System.Drawing.Size(115, 23);
             this.btnZipAndBase64.TabIndex = 13;
@@ -1153,7 +1157,7 @@
             // 
             // btnUnbase64AndUnzip
             // 
-            this.btnUnbase64AndUnzip.Location = new System.Drawing.Point(858, 283);
+            this.btnUnbase64AndUnzip.Location = new System.Drawing.Point(924, 283);
             this.btnUnbase64AndUnzip.Name = "btnUnbase64AndUnzip";
             this.btnUnbase64AndUnzip.Size = new System.Drawing.Size(119, 23);
             this.btnUnbase64AndUnzip.TabIndex = 14;
@@ -1163,7 +1167,7 @@
             // 
             // btnUrlEncode
             // 
-            this.btnUrlEncode.Location = new System.Drawing.Point(983, 283);
+            this.btnUrlEncode.Location = new System.Drawing.Point(1049, 283);
             this.btnUrlEncode.Name = "btnUrlEncode";
             this.btnUrlEncode.Size = new System.Drawing.Size(75, 23);
             this.btnUrlEncode.TabIndex = 15;
@@ -1173,7 +1177,7 @@
             // 
             // btnUrlDecode
             // 
-            this.btnUrlDecode.Location = new System.Drawing.Point(1064, 283);
+            this.btnUrlDecode.Location = new System.Drawing.Point(1130, 283);
             this.btnUrlDecode.Name = "btnUrlDecode";
             this.btnUrlDecode.Size = new System.Drawing.Size(75, 23);
             this.btnUrlDecode.TabIndex = 16;
@@ -1181,22 +1185,45 @@
             this.btnUrlDecode.UseVisualStyleBackColor = true;
             this.btnUrlDecode.Click += new System.EventHandler(this.btnUrlDecode_Click);
             // 
-            // btnSaveToTxt
+            // btnXmlToClass
             // 
-            this.btnSaveToTxt.Location = new System.Drawing.Point(569, 283);
-            this.btnSaveToTxt.Name = "btnSaveToTxt";
-            this.btnSaveToTxt.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveToTxt.TabIndex = 17;
-            this.btnSaveToTxt.Text = "保存为文本";
-            this.btnSaveToTxt.UseVisualStyleBackColor = true;
-            this.btnSaveToTxt.Click += new System.EventHandler(this.btnSaveToTxt_Click);
+            this.btnXmlToClass.Location = new System.Drawing.Point(1211, 283);
+            this.btnXmlToClass.Name = "btnXmlToClass";
+            this.btnXmlToClass.Size = new System.Drawing.Size(75, 23);
+            this.btnXmlToClass.TabIndex = 18;
+            this.btnXmlToClass.Text = "xmlToClass";
+            this.btnXmlToClass.UseVisualStyleBackColor = true;
+            this.btnXmlToClass.Click += new System.EventHandler(this.btnXmlToClass_Click);
+            // 
+            // btnTabaccoTestOnly
+            // 
+            this.btnTabaccoTestOnly.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnTabaccoTestOnly.Location = new System.Drawing.Point(518, 283);
+            this.btnTabaccoTestOnly.Name = "btnTabaccoTestOnly";
+            this.btnTabaccoTestOnly.Size = new System.Drawing.Size(117, 23);
+            this.btnTabaccoTestOnly.TabIndex = 19;
+            this.btnTabaccoTestOnly.Text = "烟草支付测试专用";
+            this.btnTabaccoTestOnly.UseVisualStyleBackColor = false;
+            this.btnTabaccoTestOnly.Click += new System.EventHandler(this.btnTabaccoTestOnly_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(641, 283);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "手动保存";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmPayent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1545, 753);
-            this.Controls.Add(this.btnSaveToTxt);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnTabaccoTestOnly);
+            this.Controls.Add(this.btnXmlToClass);
             this.Controls.Add(this.btnUrlDecode);
             this.Controls.Add(this.btnUrlEncode);
             this.Controls.Add(this.btnUnbase64AndUnzip);
@@ -1351,6 +1378,8 @@
         private System.Windows.Forms.Button btnUnbase64AndUnzip;
         private System.Windows.Forms.Button btnUrlEncode;
         private System.Windows.Forms.Button btnUrlDecode;
-        private System.Windows.Forms.Button btnSaveToTxt;
+        private System.Windows.Forms.Button btnXmlToClass;
+        private System.Windows.Forms.Button btnTabaccoTestOnly;
+        private System.Windows.Forms.Button button1;
     }
 }

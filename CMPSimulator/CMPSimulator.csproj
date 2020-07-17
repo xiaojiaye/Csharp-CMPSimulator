@@ -153,6 +153,7 @@
     <Compile Include="tools\CmpCommonTools.cs" />
     <Compile Include="tools\SqlHelper.cs" />
     <Compile Include="tools\tempClass.cs" />
+    <Compile Include="tools\WriteLog.cs" />
     <Compile Include="tools\XmlSerializeHelper.cs" />
     <Compile Include="tools\ZipAndBase64.cs" />
     <Compile Include="tools\ZipHelper.cs" />
@@ -161,6 +162,12 @@
     </Compile>
     <Compile Include="UI\FrmPayent.Designer.cs">
       <DependentUpon>FrmPayent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_XmlToClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_XmlToClass.Designer.cs">
+      <DependentUpon>Frm_XmlToClass.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CMPSimulator.resx">
       <DependentUpon>CMPSimulator.cs</DependentUpon>
@@ -176,6 +183,9 @@
     </Compile>
     <EmbeddedResource Include="UI\FrmPayent.resx">
       <DependentUpon>FrmPayent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_XmlToClass.resx">
+      <DependentUpon>Frm_XmlToClass.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>

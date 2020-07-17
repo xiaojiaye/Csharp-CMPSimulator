@@ -80,6 +80,54 @@ namespace CMPSimulator.CreateXml
             return sbCreatePayent0010CustomizeCount.ToString();
         }
 
+        /// <summary>
+        /// 产生产生PAYENT0010报文，不带zip节点，烟草测试专用，临时
+        /// </summary>
+        /// <param name="objPayent"></param>
+        /// <returns></returns>
+        public static string CreatePAYENT0010TabaccoOnly(ObjectPayent objPayent)
+        {
+            StringBuilder sbCreatePayent0010CustomizeCount = new StringBuilder();
+            sbCreatePayent0010CustomizeCount.Append("<?xml version='1.0' encoding='GB2312'?><CMS><eb><pub><TransCode>" + objPayent.TransCode + "</TransCode><CIS>");
+            sbCreatePayent0010CustomizeCount.Append(objPayent.CIS + "</CIS><BankCode>102</BankCode><ID>" + objPayent.ID + "</ID><TranDate>");
+            sbCreatePayent0010CustomizeCount.Append(objPayent.TranDate + "</TranDate><TranTime>" + objPayent.TranTime + "</TranTime><fSeqno>" + objPayent.fSeqno + "</fSeqno></pub><in>");
+            // <OnlBatF>表示联机标志，只能选择1；  <SettleMode>  入账方式  2表示并笔记账，0表示逐笔记账
+            sbCreatePayent0010CustomizeCount.Append("<OnlBatF>" + objPayent.OnlBatF + "</OnlBatF><SettleMode>" + objPayent.SettleMode + "</SettleMode><TotalNum>" + objPayent.TotalNum + "</TotalNum><TotalAmt>" + objPayent.TotalAmt + "</TotalAmt>");
+            sbCreatePayent0010CustomizeCount.Append("<SignTime>" + objPayent.SignTime + "</SignTime><ReqReserved1>" + objPayent.ReqReserved1 + "</ReqReserved1><ReqReserved2>" + objPayent.ReqReserved2 + "</ReqReserved2>");
+            string srcRds = CreateRdAreaTabacco(objPayent);
+            sbCreatePayent0010CustomizeCount.Append(srcRds + "</in></eb></CMS>");
+            return sbCreatePayent0010CustomizeCount.ToString();
+        }
+
+        public static string CreateRdAreaTabacco(ObjectPayent objPayent)
+        {
+            #region 定义收款人参数
+            string recAccName1 = "";
+            string recAccNo1 = "";
+            // string 
+
+            #endregion
+            StringBuilder sbRdArea = new StringBuilder();
+                // 【1】 
+                sbRdArea.Append("<rd><iSeqno>1</iSeqno><ReimburseNo></ReimburseNo><ReimburseNum></ReimburseNum><StartDate></StartDate><StartTime></StartTime>");
+                // 1：加急 2：普通（工行异地人民币转账不再区分普通\加急,统一按加急处理） 3：跨行快汇（当涉及账户管家账户转账时，记账方式不支持普通，工行异地转账不再区分普通\加急,统一按加急处理）
+                sbRdArea.Append("<PayType>" + objPayent.PayType + "</PayType><PayAccNo>" + objPayent.PayAccNo + "</PayAccNo><PayAccNameCN>" + objPayent.PayAccNameCN + "</PayAccNameCN><PayAccNameEN></PayAccNameEN>");
+                sbRdArea.Append("<RecAccNo>" + objPayent.RecAccNo + "</RecAccNo><RecAccNameCN>" + objPayent.RecAccNameCN + "</RecAccNameCN><RecAccNameEN></RecAccNameEN>");
+                //  1：系统内  2：系统外            1：同城  2：异地        跨行必输  0：对公账户  1：个人账户
+                sbRdArea.Append("<SysIOFlg>" + objPayent.SysIOFlg + "</SysIOFlg><IsSameCity>" + objPayent.IsSameCity + "</IsSameCity><Prop>" + objPayent.Prop + "</Prop>");
+                sbRdArea.Append("<RecICBCCode></RecICBCCode><RecCityName>长沙</RecCityName><RecBankNo></RecBankNo>");
+                sbRdArea.Append("<RecBankName>中国工商银行长沙某测试支行</RecBankName><CurrType>" + objPayent.CurrType + "</CurrType><PayAmt>1</PayAmt>");
+                sbRdArea.Append("<UseCode></UseCode><UseCN>" + objPayent.UseCN + "</UseCN><EnSummary></EnSummary>");
+                sbRdArea.Append("<PostScript>" + objPayent.PostScript + "</PostScript><Summary>" + objPayent.Summary + "</Summary><Ref>" + objPayent.Ref + "</Ref><Oref>" + objPayent.Oref + "</Oref>");
+                sbRdArea.Append("<ERPSqn></ERPSqn><BusCode>001</BusCode><ERPcheckno></ERPcheckno>");
+                sbRdArea.Append("<CrvouhType></CrvouhType><CrvouhName></CrvouhName><CrvouhNo></CrvouhNo>");
+                sbRdArea.Append("<BankType>102</BankType><FileNames></FileNames><Indexs></Indexs><PaySubNo></PaySubNo><RecSubNo></RecSubNo>");
+                sbRdArea.Append("<MCardNo>" + objPayent.MCardNo + "</MCardNo><MCardName>" + objPayent.MCardName + "</MCardName></rd>");
+         
+            return sbRdArea.ToString();
+        }
+
+
         #endregion
 
         #region PAYPERCOL  0.0.1.0  报文生成方法

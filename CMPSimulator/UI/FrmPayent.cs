@@ -89,6 +89,8 @@ namespace CMPSimulator.UI
         // 结算类提交
         private void btnPayentSubmit_Click(object sender, EventArgs e)
         {
+            this.dgvShowQpdRd.DataSource = null;
+            this.txtResultShow.Text = string.Empty;
             string strBeijingTime = DateTime.Now.ToString("yyyyMMddHHmmssfff");   // PC实际提交实际
             strSignTime = strTestEnvironmentDate + strBeijingTime.Substring(8, 9);  // 根据测试环境时间改变签名时间
 
@@ -197,6 +199,8 @@ namespace CMPSimulator.UI
             string t = Encoding.GetEncoding(936).GetString(b);
             this.txtResultShow.Text = this.txtResultShow.Text + "【银行返回1：】\r\n" + EncryptResult + "\r\n";
             this.txtResultShow.Text = this.txtResultShow.Text + "【银行返回2：】\r\n" + t + "\r\n";
+            // 【5】记录日志
+            WriteLog.writeLog(this.txtResultShow.Text, strTransCode, strBeijingTime);
             #endregion
         }
 
@@ -550,6 +554,8 @@ namespace CMPSimulator.UI
         //  查询类提交
         private void btnQuerySubmit_Click(object sender, EventArgs e)
         {
+            this.dgvShowQpdRd.DataSource = null;
+            this.txtResultShow.Text = string.Empty;
             string strBeijingTime = DateTime.Now.ToString("yyyyMMddHHmmssfff");   // PC实际提交实际
             
             #region 验证选择项
@@ -642,6 +648,8 @@ namespace CMPSimulator.UI
                             {
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                // 退出方法前，要写日志
+                                WriteLog.writeLog(this.txtResultShow.Text, queryCodeVersion, strBeijingTime);
                                 return;
                             }
 
@@ -737,6 +745,8 @@ namespace CMPSimulator.UI
                             {
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                // 退出方法前，要写日志
+                                WriteLog.writeLog(this.txtResultShow.Text, queryCodeVersion, strBeijingTime);
                                 return;
                             }
 
@@ -833,6 +843,8 @@ namespace CMPSimulator.UI
                             {
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                // 退出方法前，要写日志
+                                WriteLog.writeLog(this.txtResultShow.Text, queryCodeVersion, strBeijingTime);
                                 return;
                             }
 
@@ -883,6 +895,7 @@ namespace CMPSimulator.UI
                         this.dgvShowQpdRd.DataSource = objOut.listQrygjtlRd;
                         tools.DataGridViewStyle.DgvStyle1(this.dgvShowQpdRd);
                     }
+                    WriteLog.writeLog(this.txtResultShow.Text, queryCodeVersion, strBeijingTime);
                     return;
                     break;
 
@@ -949,6 +962,8 @@ namespace CMPSimulator.UI
                             {
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetCode：】" + strRetCode + "\r\n";
                                 this.txtResultShow.Text = this.txtResultShow.Text + "【RetMsg：】" + strRetMsg + "\r\n";
+                                // 退出方法前，要写日志
+                                WriteLog.writeLog(this.txtResultShow.Text, queryCodeVersion, strBeijingTime);
                                 return;
                             }
 
@@ -1003,6 +1018,7 @@ namespace CMPSimulator.UI
                         this.txtResultShow.Text = this.txtResultShow.Text + "【list<rd>显示在datagridview的时间：】" + dtEndtime2.ToString("yyyyMMddHHmmssSSS") + "\r\n";
                         tools.DataGridViewStyle.DgvStyle1(this.dgvShowQpdRd);
                     }
+                    WriteLog.writeLog(this.txtResultShow.Text, queryCodeVersion, strBeijingTime);
                     return;
                     break;
                 #endregion
@@ -1024,6 +1040,8 @@ namespace CMPSimulator.UI
             this.txtResultShow.Text = this.txtResultShow.Text + "【银行返回1：】\r\n" + EncryptResult + "\r\n";
             this.txtResultShow.Text = this.txtResultShow.Text + "【银行返回2：】\r\n" + t + "\r\n";
 
+            // 【5】记录日志
+            WriteLog.writeLog(this.txtResultShow.Text, queryCodeVersion , strBeijingTime);
         }
 
         #region 其他工具类函数
@@ -1112,5 +1130,140 @@ namespace CMPSimulator.UI
         }
         #endregion
 
+        private void btnXmlToClass_Click(object sender, EventArgs e)
+        {
+            Frm_XmlToClass objFrm_XmlToClass = new Frm_XmlToClass();
+            objFrm_XmlToClass.Show();
+        }
+        /// <summary>
+        /// 烟草测试支付专用
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTabaccoTestOnly_Click(object sender, EventArgs e)
+        {
+
+            this.dgvShowQpdRd.DataSource = null;
+            this.txtResultShow.Text = string.Empty;
+            string strBeijingTime = DateTime.Now.ToString("yyyyMMddHHmmssfff");   // PC实际提交实际
+            strSignTime = strTestEnvironmentDate + strBeijingTime.Substring(8, 9);  // 根据测试环境时间改变签名时间
+
+            #region 验证选择项
+            // 账号非空验证。。。
+            // 账号的数字验证
+            // 户名长度验证。。。
+            // 用途长度验证。。。      
+
+            // 判断是否选择了业务类型
+            if (returnTransCodeByChoose().Length == 0 || returnTransCodeByChoose() == null)
+            {
+                MessageBox.Show("请选择业务类型！");
+                return;
+            }
+            #endregion
+
+            #region 结算提交类业务参数初始化
+            // 确定接口版本
+            if (this.radInterface0001.Checked)
+            {
+                strInterfaceVersion = "0.0.0.1";
+            }
+            else
+            {
+                strInterfaceVersion = "0.0.1.0";
+            }
+
+            // 确定 报文部分是否压缩
+            if (this.ckBoxZipFlag.Checked)
+            {
+                zipFlag = true;
+            }
+            else
+            {
+                zipFlag = false;
+            }
+
+            // 确定交易代码 , 根据选择的单选按钮返回transCode
+            strTransCode = returnTransCodeByChoose();
+            transCodeVersionZipFlag = strTransCode + strInterfaceVersion + zipFlag.ToString();
+
+
+
+            // 【1】确定签名URL地址
+            strSignUrl = @"http://" + strPostAddress + ":" + strSignPort;
+            // 【2】根据业务参数组包
+            // 根据交易代码transCode 创建不同对象，进而创建不同报文
+            switch (transCodeVersionZipFlag)
+            {
+                case "PAYENT0.0.1.0False":
+                    //根据交易代码，创建并封装实体类对象
+                    objPayent = createObjectPayent0010(strBeijingTime);
+                    // 作为对象传输，进而生成报文
+                    strScr = CreateXml.CreateXml.CreatePAYENT0010(objPayent);
+                    break;
+                case "PAYENT0.0.1.0True":
+                    objPayent = createObjectPayent0010(strBeijingTime);
+                    strScr = CreateXml.CreateXml.CreatePAYENTWithZip0010(objPayent);
+                    break;
+                //case "PAYPER0.0.1.0False":
+                //    objPayper0010 = createObjectPayper0010(strBeijingTime);
+                //    strScr = CreateXml.CreateXml.CreatePAYPER0010(objPayper0010);
+                //    break;
+                //case "PAYPERCOL0.0.1.0False":
+                //    objPaypercol0010 = createObjectPaypercol0010(strBeijingTime);
+                //    strScr = CreateXml.CreateXml.CreatePAYPERCOL0010(objPaypercol0010);
+                //    break;
+                default:
+                    MessageBox.Show("该版本的接口不支持，或者作者未开发此版本接口！");
+                    return;
+                    break;
+            }
+
+            #endregion
+
+            #region 签名服务
+            // 【3】向签名端口发送
+            strSignResult = SignOrEncrypt.EncryptOrSign(strSignUrl, strScr, 0);
+            this.txtResultShow.Text = "【签名URL地址：】\r\n" + strSignUrl + "\r\n";
+            this.txtResultShow.Text = this.txtResultShow.Text + "【签名前的原包：】\r\n" + strScr + "\r\n";
+            this.txtResultShow.Text = this.txtResultShow.Text + "【签名后的数据：】\r\n" + strSignResult + "\r\n";
+            #endregion
+
+            #region Http加密服务
+            // 【1】确定HTTP加密服务的 ACTION  URL地址
+            // 封装ActionUrl对象
+            ActionUrl objActionUrl = new ActionUrl()
+            {
+                strHttpPort = strHttpPort,
+                strPostAddress = strPostAddress,
+                strId = strId,
+                strPackageID = strBeijingTime,
+                strSendTime = strBeijingTime,
+                strInterfaceVersion = strInterfaceVersion,
+                strCis = strCis,
+                strTransCode = strTransCode
+
+            };
+            string strActionUrl = CmpCommonTools.makeActionUrl(objActionUrl);
+            // 【2】确定POST 数据
+            strPostData = CmpCommonTools.createPostData(objActionUrl, zipFlag, strSignResult);
+            // 【3】向加密端口发送
+            EncryptResult = SignOrEncrypt.EncryptOrSign(strActionUrl, strPostData, 1);
+            this.txtResultShow.Text = this.txtResultShow.Text + "【往448发的URL：】\r\n" + strActionUrl + "\r\n";
+            this.txtResultShow.Text = this.txtResultShow.Text + "【往448发的postData：】\r\n" + strPostData + "\r\n";
+            byte[] b = Convert.FromBase64String(EncryptResult);
+            string t = Encoding.GetEncoding(936).GetString(b);
+            this.txtResultShow.Text = this.txtResultShow.Text + "【银行返回1：】\r\n" + EncryptResult + "\r\n";
+            this.txtResultShow.Text = this.txtResultShow.Text + "【银行返回2：】\r\n" + t + "\r\n";
+            // 【5】记录日志
+            WriteLog.writeLog(this.txtResultShow.Text, strTransCode, strBeijingTime);
+            #endregion
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WriteLog.writeLogByOne(this.txtResultShow.Text, "原支付包号" + this.txtQueryCondition.Text.Trim());
+            MessageBox.Show("手动保存成功");
+        }
     }
 }
