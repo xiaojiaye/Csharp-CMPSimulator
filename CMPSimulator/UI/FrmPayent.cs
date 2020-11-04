@@ -78,7 +78,7 @@ namespace CMPSimulator.UI
             this.txtSignPort.Text = strSignPort;
             this.txtEnvironmentTime.Text = strTestEnvironmentDate;
             // 判断D盘是否有test文件夹
-            string path = @"D:\test\";
+            string path = @"c:\test\";
             if (Directory.Exists(path) == false)
             {
                 Directory.CreateDirectory(path);
@@ -688,7 +688,7 @@ namespace CMPSimulator.UI
                                 objOut.listQpdRd.AddRange(objtemp.listQpdRd);
                             }
 
-                            xml.Save("d:\\test\\" + "【" + objQpd0010.fSeqno + "】" + "第" + (iCountQpd + 1).ToString() + "次QPD.xml");//保存
+                            xml.Save("c:\\test\\" + "【" + objQpd0010.fSeqno + "】" + "第" + (iCountQpd + 1).ToString() + "次QPD.xml");//保存
                             XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                             objQpd0010.NextTag = nodelist_pub.Item(0).InnerText;
                             iCountQpd++;
@@ -786,7 +786,7 @@ namespace CMPSimulator.UI
                                 objOut.listQhisdRd.AddRange(objtemp.listQhisdRd);
                             }
 
-                            xml.Save("d:\\test\\" + "【" + objQhisd0010.fSeqno + "】" + "第" + (iCountQHISD + 1).ToString() + "次QHISD.xml");//保存
+                            xml.Save("c:\\test\\" + "【" + objQhisd0010.fSeqno + "】" + "第" + (iCountQHISD + 1).ToString() + "次QHISD.xml");//保存
                             XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                             objQhisd0010.NextTag = nodelist_pub.Item(0).InnerText;
                             iCountQHISD++;
@@ -884,7 +884,7 @@ namespace CMPSimulator.UI
                                 objOut.listQrygjtlRd.AddRange(objtemp.listQrygjtlRd);
                             }
 
-                            xml.Save("d:\\test\\" + "【" + objQRYGJDTL0010.fSeqno + "】" + "第" + (iCountQRYGJDTL + 1).ToString() + "次QRYGJDTL.xml");//保存
+                            xml.Save("c:\\test\\" + "【" + objQRYGJDTL0010.fSeqno + "】" + "第" + (iCountQRYGJDTL + 1).ToString() + "次QRYGJDTL.xml");//保存
                             XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                             objQRYGJDTL0010.NextTag = nodelist_pub.Item(0).InnerText;
                             iCountQRYGJDTL++;
@@ -1002,7 +1002,7 @@ namespace CMPSimulator.UI
                                 objOut.listDibpsbcRd.AddRange(objtemp.listDibpsbcRd);
                             }
 
-                            // xml.Save("d:\\test\\" + "【" + objDIBPSBC0001.fSeqno + "】" + "第" + (iPackageCount + 1).ToString() + "次DIBPSBC.xml");//保存,文件量太大，故没保存
+                            // xml.Save("c:\\test\\" + "【" + objDIBPSBC0001.fSeqno + "】" + "第" + (iPackageCount + 1).ToString() + "次DIBPSBC.xml");//保存,文件量太大，故没保存
                             XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                             objDIBPSBC0001.NextTag = nodelist_pub.Item(0).InnerText;
                             iPackageCount++;

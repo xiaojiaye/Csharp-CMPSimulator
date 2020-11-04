@@ -248,7 +248,7 @@ namespace CMPSimulator
                     this.txtShowResult.Text = this.txtShowResult.Text + "【银行返回2：】\r\n" + t + "\r\n";
                     XmlDocument xml = new XmlDocument();
                     xml.LoadXml(t);
-                    xml.Save("d:\\test\\" + "【" + packageID + "】" + "第" + (i + 1).ToString() + "次QPD.xml");//保存
+                    xml.Save("c:\\test\\" + "【" + packageID + "】" + "第" + (i + 1).ToString() + "次QPD.xml");//保存
                     XmlNodeList nodelist_pub = xml.GetElementsByTagName("NextTag");
                     nextTag = nodelist_pub.Item(0).InnerText;
                     //nextTag.Replace("&","&amp;");             

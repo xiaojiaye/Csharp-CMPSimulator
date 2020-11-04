@@ -543,22 +543,22 @@
             // radBingbiJiZhang
             // 
             this.radBingbiJiZhang.AutoSize = true;
-            this.radBingbiJiZhang.Checked = true;
             this.radBingbiJiZhang.Location = new System.Drawing.Point(85, 17);
             this.radBingbiJiZhang.Name = "radBingbiJiZhang";
             this.radBingbiJiZhang.Size = new System.Drawing.Size(71, 16);
             this.radBingbiJiZhang.TabIndex = 1;
-            this.radBingbiJiZhang.TabStop = true;
             this.radBingbiJiZhang.Text = "并笔记账";
             this.radBingbiJiZhang.UseVisualStyleBackColor = true;
             // 
             // radZhubiJiZhang
             // 
             this.radZhubiJiZhang.AutoSize = true;
+            this.radZhubiJiZhang.Checked = true;
             this.radZhubiJiZhang.Location = new System.Drawing.Point(8, 17);
             this.radZhubiJiZhang.Name = "radZhubiJiZhang";
             this.radZhubiJiZhang.Size = new System.Drawing.Size(71, 16);
             this.radZhubiJiZhang.TabIndex = 0;
+            this.radZhubiJiZhang.TabStop = true;
             this.radZhubiJiZhang.Text = "逐笔记账";
             this.radZhubiJiZhang.UseVisualStyleBackColor = true;
             // 
